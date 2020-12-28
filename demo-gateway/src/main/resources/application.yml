@@ -1,0 +1,25 @@
+server:
+  port: 7070
+
+spring:
+  cloud:
+    # Spring Cloud Gateway 配置项，对应 GatewayProperties 类
+    gateway:
+      # 路由配置项，对应 RouteDefinition 数组
+      routes:
+        - id: baidu # 路由的编号
+          uri: http://www.baidu.com # 路由到的目标地址
+          predicates: # 断言，作为路由的匹配条件，对应 RouteDefinition 数组
+            - Path=/baidu
+          filters:
+            - StripPrefix=1 #路径跳过单词数
+        - id: order #路由的编号
+          uri: http://localhost:7072 # 路由到的目标地址
+          predicates: # 断言，作为路由的匹配条件，对应 RouteDefinition 数组
+            - Path=/order/{segment}
+          #filters:
+          #  - StripPrefix=1
+        - id: inventory # 路由的编号
+          uri: http://localhost:7071 # 路由到的目标地址
+          predicates: # 断言，作为路由的匹配条件，对应 RouteDefinition 数组
+            - Path=/inventory/{segment}
