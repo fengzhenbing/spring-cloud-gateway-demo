@@ -23,3 +23,14 @@ spring:
           uri: http://localhost:7071 # 路由到的目标地址
           predicates: # 断言，作为路由的匹配条件，对应 RouteDefinition 数组
             - Path=/inventory/{segment}
+
+
+management:
+  endpoint:
+    gateway:
+      enabled: true # default value
+  endpoints:
+    web:
+      exposure:
+        include:
+          - gateway
