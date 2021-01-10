@@ -28,8 +28,10 @@ spring:
 #            - Path=/inventory/{segment}
 
 eureka:
+  instance:
+    leaseRenewalIntervalInSeconds: 30 # 指示eureka客户端需要多长时间（以秒为单位）将心跳发送到eureka服务器，以指示其仍处于活动状态
   client:
-    register-with-eureka: false #网关不注册了
+    register-with-eureka: false #网关不注册自身了
     fetch-registry: true
     service-url:
       defaultZone: http://127.0.0.1:8761/eureka/
